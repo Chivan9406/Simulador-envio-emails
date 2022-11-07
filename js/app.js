@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.value.trim() === "") {
             mostrarAlerta(`${e.target.id} es obligatorio`, e.target.parentElement)
             email[e.target.name] = ""
-            comprobarEmail()
+            comprobarFormulario()
             return
         }
 
         if (e.target.id === "email" && !validarEmail(e.target.value)) {
             mostrarAlerta("El email no es válido", e.target.parentElement)
             email[e.target.name] = ""
-            comprobarEmail()
+            comprobarFormulario()
             return
         }
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         email[e.target.name] = e.target.value.trim().toLocaleLowerCase()
 
         // Comprobar objeto email
-        comprobarEmail()
+        comprobarFormulario()
     }
 
     function mostrarAlerta(mensaje, referencia) {
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return regex.test(email)
     }
 
-    function comprobarEmail() {
+    function comprobarFormulario() {
         if (Object.values(email).includes("")) {
             btnSubmit.classList.add("opacity-50")
             btnSubmit.disabled = true
@@ -111,6 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
         email.asunto = ""
         email.mensaje = ""
         formulario.reset()
-        comprobarEmail()
+        comprobarFormulario()
     }
 })
