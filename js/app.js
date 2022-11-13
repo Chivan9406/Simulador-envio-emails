@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Seleccionar los elementos de la interfaz
     const inputEmail = document.querySelector("#email")
+    const inputCc = document.querySelector("#cc")
     const inputAsunto = document.querySelector("#asunto")
     const inputMensaje = document.querySelector("#mensaje")
     const formulario = document.querySelector("#formulario")
@@ -22,6 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     btnReset.addEventListener("click", (e) => {
         e.preventDefault()
         resetFormulario()
+    })
+    inputCc.addEventListener("blur", e => {
+        if (e.target.value.trim() !== "") {
+            validar(e);
+        }
     })
 
     function enviarEmail(e) {
@@ -53,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return
         }
 
-        if (e.target.id === "email" && !validarEmail(e.target.value)) {
+        if ((e.target.id === "cc" || e.target.id === "email") && !validarEmail(e.target.value)) {
             mostrarAlerta("El email no es válido", e.target.parentElement)
             email[e.target.name] = ""
             comprobarFormulario()
