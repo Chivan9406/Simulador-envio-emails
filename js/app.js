@@ -116,7 +116,21 @@ document.addEventListener("DOMContentLoaded", () => {
         email.email = ""
         email.asunto = ""
         email.mensaje = ""
+
+        if (Object.keys(email).includes("cc")) {
+            delete email.cc
+        }
+
+        deleteAlerts()
         formulario.reset()
         comprobarFormulario()
+    }
+
+    function deleteAlerts() {
+        const alertas = document.querySelectorAll(".bg-red-600")
+
+        if (alertas) {
+            alertas.forEach(alerta => alerta.remove())
+        }
     }
 })
